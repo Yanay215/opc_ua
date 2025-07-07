@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(test_client1)
+add_executable(test_client1 main.cpp)
+target_include_directories(test_client1 PUBLIC "C:/Program Files (x86)/open62541/include/")
+target_link_libraries(test_client1 "C:/Program Files (x86)/open62541/lib/libopen62541.dll.a")
