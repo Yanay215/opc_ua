@@ -1,3 +1,0 @@
-C:/Users/Yanturin Aygiz/Desktop/test_client/build/CMakeFiles/test_client.dir
-C:/Users/Yanturin Aygiz/Desktop/test_client/build/CMakeFiles/edit_cache.dir
-C:/Users/Yanturin Aygiz/Desktop/test_client/build/CMakeFiles/rebuild_cache.dir
