@@ -1,3 +1,0 @@
-C:/Users/Yanturin Aygiz/Desktop/test_api/build/CMakeFiles/test_api.dir
-C:/Users/Yanturin Aygiz/Desktop/test_api/build/CMakeFiles/edit_cache.dir
-C:/Users/Yanturin Aygiz/Desktop/test_api/build/CMakeFiles/rebuild_cache.dir
