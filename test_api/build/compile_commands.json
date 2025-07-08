@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/Yanturin Aygiz/Desktop/test_api/build",
-  "command": "C:\\mingw64\\bin\\g++.exe  @CMakeFiles/test_api.dir/includes_CXX.rsp -g -o CMakeFiles\\test_api.dir\\main.cpp.obj -c \"C:\\Users\\Yanturin Aygiz\\Desktop\\test_api\\main.cpp\"",
-  "file": "C:/Users/Yanturin Aygiz/Desktop/test_api/main.cpp",
-  "output": "CMakeFiles/test_api.dir/main.cpp.obj"
-}
-]
