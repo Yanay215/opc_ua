@@ -8,6 +8,7 @@
 #include "open62541/client_highlevel.h"
 #include <memory>
 #include <vector>
+#include <signal.h>
 
 template<typename T>
 void dataChangeHandler(UA_Client *client, UA_UInt32 subId, void *subContext,
@@ -31,7 +32,16 @@ void dataChangeHandler(UA_Client *client, UA_UInt32 subId, void *subContext,
     printf("\n");
 }
 
+UA_Boolean running = true;
+
+static void sigintHandler(int sig) {
+    std::cout << "SIGINT received, exiting" << std::endl;
+    running = false;
+}
+
 int main(int argc, char *argv[]) {
+    signal(SIGINT, sigintHandler);
+    signal(SIGTERM, sigintHandler);
     /* Create a client and connect */
     std::shared_ptr<UA_Client> client(UA_Client_new(), UA_Client_delete);
     UA_ClientConfig_setDefault(UA_Client_getConfig(client.get()));
@@ -73,7 +83,7 @@ int main(int argc, char *argv[]) {
         results.push_back(result);
     }
     /* Run the client for 5 seconds to process subscription messages */
-    for(int i = 0; i < 30; i++) {
+    while(running) {
         status = UA_Client_run_iterate(client.get(), 1000);
         if(status != UA_STATUSCODE_GOOD) {
             std::cerr << "Client run iteration failed: 0x" << std::hex << status << std::endl;
