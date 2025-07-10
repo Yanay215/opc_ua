@@ -7,9 +7,19 @@ import sys
 import random
 import time
  
-from opcua import Server
+from opcua import Server, ua, uamethod
  
- 
+@uamethod 
+def get_random_value(parent):
+  time.sleep(2)
+  return random.uniform(190.0, 240.0)
+
+def func(parent, variant):
+    ret = False
+    if variant.Value % 2 == 0:
+        ret = True
+    return [ua.Variant(ret, ua.VariantType.Boolean)]
+
 if __name__ == "__main__":
   server = Server()
   server.set_endpoint(URL)
@@ -18,7 +28,8 @@ if __name__ == "__main__":
   ns        = server.register_namespace("Мои понятия")
   voltmeter = objects.add_object(ns, "Вольтметр")    
   voltage   = voltmeter.add_variable(ns, "Напряжение", 0.0)
-
+  method = voltmeter.add_method(ns, "Четность", func, [ua.VariantType.Int64], [ua.VariantType.Boolean]) 
+  random_method = voltmeter.add_method(ns, "Случайное значение", get_random_value, [], [ua.VariantType.Double])
   server.start()
      
   V = 220.0
