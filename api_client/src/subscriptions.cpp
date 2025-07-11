@@ -18,7 +18,7 @@ UA_UInt32 Subscriptions::createSubscription(int publishingInterval) {
 }
 
 void Subscriptions::addRequest(UA_NodeId nodeId, UA_Double samplingInterval, UA_UInt32 queueSize) {
-    auto request = std::unique_ptr<UA_MonitoredItemCreateRequest, decltype(&Subscriptions::deleteRequests)>(new UA_MonitoredItemCreateRequest, &Subscriptions::deleteRequests);
+    auto request = MonitoredItemRequestPtr(new UA_MonitoredItemCreateRequest, &Subscriptions::deleteRequests);
     *request = UA_MonitoredItemCreateRequest_default(nodeId);
     request->requestedParameters.samplingInterval = samplingInterval;
     request->requestedParameters.queueSize = queueSize;
