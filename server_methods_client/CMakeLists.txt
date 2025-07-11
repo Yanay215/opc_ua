@@ -1,6 +1,0 @@
-cmake_minimum_required(VERSION 3.10)
-project(test_client)
-include_directories(test_client PUBLIC "C:/Program Files (x86)/open62541/include/")
-add_executable(test_client main.cpp "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/src/opcua_client.cpp")
-target_include_directories(test_client PUBLIC "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/include/")
-target_link_libraries(test_client "C:/Program Files (x86)/open62541/lib/libopen62541.dll.a")
