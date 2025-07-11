@@ -1,3 +1,6 @@
+#ifndef METHODS_H
+#define METHODS_H
+
 #include <memory>
 #include <vector>
 #include "open62541/client.h"
@@ -17,3 +20,5 @@ class Methods {
         std::shared_ptr<UA_Client> client;
         static bool started;
 };
+
+#endif // METHODS_H
