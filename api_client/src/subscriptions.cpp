@@ -4,7 +4,7 @@
 
 Subscriptions::Subscriptions(std::shared_ptr<UA_Client> client) : client(client) {}
 
-UA_UInt32 Subscriptions::createSubscription(double publishingInterval) {
+UA_UInt32 Subscriptions::createSubscription(int publishingInterval) {
     UA_CreateSubscriptionRequest request = UA_CreateSubscriptionRequest_default();
     request.requestedPublishingInterval = publishingInterval;
     UA_CreateSubscriptionResponse response = UA_Client_Subscriptions_create(client.get(), request, nullptr, nullptr, nullptr);

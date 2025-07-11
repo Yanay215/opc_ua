@@ -26,6 +26,29 @@ UA_StatusCode OPCUA_Client::runIterate(int timeout) {
     return UA_Client_run_iterate(client.get(), timeout);
 }
 
+UA_StatusCode OPCUA_Client::callMethod(const UA_NodeId objectId, const UA_NodeId methodId, size_t inputSize, int arg) {
+    UA_Variant input;
+    UA_Variant_init(&input);
+    if (arg != NULL) {
+        UA_Variant_setScalar(&input, &arg, &UA_TYPES[UA_TYPES_INT64]);
+    }
+    UA_Variant *output;
+    size_t outputSize;
+    UA_StatusCode retval = UA_Client_call(client.get(), objectId, methodId, inputSize, &input, &outputSize, &output);
+    if (retval != UA_STATUSCODE_GOOD) {
+        std::cout << "Failed to call method: " << UA_StatusCode_name(retval) << std::endl;
+        return retval;
+    }
+    if (arg != NULL) {
+        auto result = static_cast<bool>(output->data);
+        std::cout << "Result: " << result << std::endl;
+    } else {
+        auto result = static_cast<double*>(output->data);
+        std::cout << "Result: " << *result << std::endl;
+    }
+    return retval;
+}
+
 std::shared_ptr<UA_Client> OPCUA_Client::getClient() const {
     return client;
 }

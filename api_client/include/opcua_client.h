@@ -14,6 +14,7 @@ class OPCUA_Client {
         bool connect(const std::string& endpointUrl);
         void disconnect();
         UA_StatusCode runIterate(int timeout);
+        UA_StatusCode callMethod(const UA_NodeId objectId, const UA_NodeId methodId, size_t inputSize, int arg = NULL); 
         std::shared_ptr<UA_Client> getClient() const;
     private:
         std::shared_ptr<UA_Client> client;

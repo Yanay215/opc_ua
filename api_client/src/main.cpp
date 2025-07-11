@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
                 UA_Variant_clear(&value);
                 continue;
             }
-            std::cout << *(double*)value.data << std::endl; 
+            std::cout << *static_cast<double*>(value.data) << std::endl; 
             UA_Variant_clear(&value);
         }
     }

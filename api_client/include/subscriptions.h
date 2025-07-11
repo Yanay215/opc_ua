@@ -11,7 +11,7 @@ class Subscriptions {
     public:
         Subscriptions(std::shared_ptr<UA_Client> client);
         ~Subscriptions() = default;
-        UA_UInt32 createSubscription(double publishingInterval);
+        UA_UInt32 createSubscription(int publishingInterval);
         void addRequest(UA_NodeId nodeId, UA_Double samplingInterval, UA_UInt32 queueSize);
         template<typename T>
         bool createMonitoredItems(UA_TimestampsToReturn timestamp) {
