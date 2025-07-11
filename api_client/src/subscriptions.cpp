@@ -4,6 +4,12 @@
 
 Subscriptions::Subscriptions(std::shared_ptr<UA_Client> client) : client(client) {}
 
+Subscriptions::~Subscriptions() {
+    if (subscriptionId != 0) {
+        UA_Client_Subscriptions_deleteSingle(client.get(), subscriptionId);
+    }
+}
+
 UA_UInt32 Subscriptions::createSubscription(int publishingInterval) {
     UA_CreateSubscriptionRequest request = UA_CreateSubscriptionRequest_default();
     request.requestedPublishingInterval = publishingInterval;
@@ -11,7 +17,7 @@ UA_UInt32 Subscriptions::createSubscription(int publishingInterval) {
     if (response.responseHeader.serviceResult != UA_STATUSCODE_GOOD) {
         std::cout << "Failed to create subscription: " << UA_StatusCode_name(response.responseHeader.serviceResult) << std::endl;
         UA_CreateSubscriptionResponse_clear(&response);
-        return 1;
+        return 0;
     }
     subscriptionId = response.subscriptionId;
     return subscriptionId;

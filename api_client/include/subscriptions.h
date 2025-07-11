@@ -10,7 +10,7 @@
 class Subscriptions {
     public:
         Subscriptions(std::shared_ptr<UA_Client> client);
-        ~Subscriptions() = default;
+        ~Subscriptions();
         UA_UInt32 createSubscription(int publishingInterval);
         void addRequest(UA_NodeId nodeId, UA_Double samplingInterval, UA_UInt32 queueSize);
         template<typename T>

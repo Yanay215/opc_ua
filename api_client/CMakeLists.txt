@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(api_client_v2)
 include_directories(api_client_v2 PUBLIC "C:/Program Files (x86)/open62541/include/")
-add_executable(api_client_v2 src/opcua_client.cpp src/subscriptions.cpp src/main.cpp)
+add_executable(api_client_v2 src/opcua_client.cpp src/subscriptions.cpp src/methods.cpp src/main.cpp)
 target_include_directories(api_client_v2 PRIVATE include)
 target_link_libraries(api_client_v2 "C:/Program Files (x86)/open62541/lib/libopen62541.dll.a")
