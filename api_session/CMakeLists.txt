@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(opcua_session)
+include_directories(opcua_session PUBLIC "C:/Program Files (x86)/open62541/include/")
+add_executable(opcua_session src/main.cpp src/opcua_session.cpp "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/src/opcua_client.cpp" "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/src/subscriptions.cpp" "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/src/methods.cpp")
+target_include_directories(opcua_session PUBLIC include "C:/Users/Yanturin Aygiz/Desktop/api_client_v2/include/")
+target_link_libraries(opcua_session PRIVATE "C:/Program Files (x86)/open62541/lib/libopen62541.dll.a")
